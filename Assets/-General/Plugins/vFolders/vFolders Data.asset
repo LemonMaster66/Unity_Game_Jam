@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb9c12a8c6c949f7af83a3d238359d0, type: 3}
+  m_Name: vFolders Data
+  m_EditorClassIdentifier: 
+  folderDatas_byGuid:
+    keys:
+    - c5f242fb798b8e94ca7198b08e98919d
+    - 64fc03d02b89c3247a6e59c5630d958a
+    - 84fbc51814cfc9e45ad4506aaa04c765
+    - d44cae04f768a1041bf9f40e88bfe63d
+    - e386dbbfffed2304e8b9331c299b6927
+    - a2447eb0044c78242bfd77d1fe1054b7
+    - 750434f2675ad0b43b7050f38271eabb
+    - 636c805a950300049a26c0a5f02491b0
+    - fb8dada89cc251447b394424343d1581
+    - bf0d8a01c0319654ca01c45baf050ff0
+    - b49efa315b7cd9a47a82953fb90f25ba
+    - 5f3f8406ab0181c4686ef00b63a94e44
+    - b43acdeae3b8db0498c600287705dbf5
+    - 002327b1a68b7644aa91fa09562a2c92
+    - 2d53bf00dcdf48947a94af1475c2ba68
+    - b5b412b13a66e614d9827fe826bcc544
+    - 69426cd972847cc49b46e264635e77fb
+    - a6b02ad217145b94fbefbe94dd1b745e
+    - 5adc400a6565f2148962050569d2479c
+    - be24ee549b7512a4f92b15274a9a22d7
+    - 4f29019bf12243144a525ad9b50111d1
+    - a34a9b7583374ef4ca986d61dd8e9ab9
+    values:
+    - colorIndex: 1
+      iconNameOrGuid: 
+    - colorIndex: 4
+      iconNameOrGuid: 
+    - colorIndex: 7
+      iconNameOrGuid: 
+    - colorIndex: 1
+      iconNameOrGuid: ScriptableObject Icon
+    - colorIndex: 2
+      iconNameOrGuid: AnimationClip Icon
+    - colorIndex: 3
+      iconNameOrGuid: Material Icon
+    - colorIndex: 4
+      iconNameOrGuid: Mesh Icon
+    - colorIndex: 5
+      iconNameOrGuid: Prefab Icon
+    - colorIndex: 6
+      iconNameOrGuid: SceneAsset Icon
+    - colorIndex: 7
+      iconNameOrGuid: cs Script Icon
+    - colorIndex: 8
+      iconNameOrGuid: AudioClip Icon
+    - colorIndex: 10
+      iconNameOrGuid: Texture Icon
+    - colorIndex: 1
+      iconNameOrGuid: 
+    - colorIndex: 1
+      iconNameOrGuid: 
+    - colorIndex: 2
+      iconNameOrGuid: 
+    - colorIndex: 4
+      iconNameOrGuid: 
+    - colorIndex: 5
+      iconNameOrGuid: 
+    - colorIndex: 6
+      iconNameOrGuid: 
+    - colorIndex: 3
+      iconNameOrGuid: 
+    - colorIndex: 1
+      iconNameOrGuid: 
+    - colorIndex: 10
+      iconNameOrGuid: 
+    - colorIndex: 10
+      iconNameOrGuid: 
