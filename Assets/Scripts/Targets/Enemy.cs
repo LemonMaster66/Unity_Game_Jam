@@ -20,13 +20,8 @@ public class Enemy : Target
     public Collider[]  Points;
     public LayerMask   OcclusionLayerMask;
 
-    [Space(5)]
-    
-    
-
 
     [Tab("Audio")]
-    public AudioClip[] StepSFX;
     public AudioClip[] AttackSFX;
 
 
@@ -45,6 +40,7 @@ public class Enemy : Target
 
     public float animationSpeedTarget;
     public float animationSpeedBlend;
+    public float animationMultiplier = 1;
 
     private string STATE_SEARCHING = "Searching";
     private string STATE_CHASING   = "Chasing";
@@ -71,7 +67,7 @@ public class Enemy : Target
         if(animator != null)
         {
             animator.SetFloat("Blend", agent.velocity.magnitude/agent.speed, 0.05f, Time.deltaTime);
-            animator.speed = Math.Clamp(AttackCooldown > 0 ? 1 : agent.velocity.magnitude/25, 0, 3);
+            animator.speed = Math.Clamp(AttackCooldown > 0 || playerStats.Dead ? 1 : agent.velocity.magnitude/25 * animationMultiplier, 0, 3);
         }
     }
 
@@ -174,7 +170,7 @@ public class Enemy : Target
         AttackCooldown = 1.25f;
         playerStats.TakeDamage(Damage);
 
-        animator.CrossFade("Enemy_Attack", 0.1f);
+        animator.CrossFade("Enemy_Attack", 0.1f, 0, 0);
         audioManager.PlayRandomSound(AttackSFX, 1, 1, 0.1f);
     }
 }

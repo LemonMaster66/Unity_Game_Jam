@@ -74,9 +74,9 @@ public class Target : MonoBehaviour
 
     public virtual void Die(float Damage)
     {
+        if(Dead) return;
         Dead = true;
-
-        gameObject.SetActive(false);
-        Debug.Log(gameObject.name + " is Dead");
+        
+        Destroy(transform.parent.gameObject);
     }
 }

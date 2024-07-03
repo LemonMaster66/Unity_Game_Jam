@@ -343,9 +343,26 @@ MonoBehaviour:
   ActiveWave: 0
   waves:
   - enemies:
+    - enemyPrefab: {fileID: 6529056295599562177, guid: 76c27c8880df3dd4081d899c0f9d71d7,
+        type: 3}
+      spawnCount: 1
+    - enemyPrefab: {fileID: 4286647982714725155, guid: e2fbc5211b919a84bad546e5351de92e,
+        type: 3}
+      spawnCount: 0
+  - enemies:
+    - enemyPrefab: {fileID: 6529056295599562177, guid: 76c27c8880df3dd4081d899c0f9d71d7,
+        type: 3}
+      spawnCount: 2
     - enemyPrefab: {fileID: 4286647982714725155, guid: e2fbc5211b919a84bad546e5351de92e,
         type: 3}
       spawnCount: 1
+  - enemies:
+    - enemyPrefab: {fileID: 6529056295599562177, guid: 76c27c8880df3dd4081d899c0f9d71d7,
+        type: 3}
+      spawnCount: 5
+    - enemyPrefab: {fileID: 4286647982714725155, guid: e2fbc5211b919a84bad546e5351de92e,
+        type: 3}
+      spawnCount: 2
 --- !u!4 &648001853
 Transform:
   m_ObjectHideFlags: 0
@@ -355,7 +372,7 @@ Transform:
   m_GameObject: {fileID: 648001851}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.81505823, y: 1.0006094, z: 1.4900512}
+  m_LocalPosition: {x: 0, y: 1, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1100,7 +1117,7 @@ PrefabInstance:
     - target: {fileID: 7755033470844775541, guid: b798ccb80f60f3b4da5a0383c74d9a08,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

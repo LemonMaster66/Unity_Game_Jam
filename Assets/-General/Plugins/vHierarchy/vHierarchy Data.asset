@@ -20,6 +20,7 @@ MonoBehaviour:
     - ab6cd124883ff5f4ab14e2a679af3974
     - 2c20e89d1f53ec242b14c0600592a61d
     - e2fbc5211b919a84bad546e5351de92e
+    - 76c27c8880df3dd4081d899c0f9d71d7
     values:
     - goDatas_byGlobalId:
         keys:
@@ -432,3 +433,24 @@ MonoBehaviour:
           iconNameOrGuid: ScriptableObject Icon
         - colorIndex: 8
           iconNameOrGuid: ScriptableObject Icon
+    - goDatas_byGlobalId:
+        keys:
+        - globalObjectIdString: GlobalObjectId_V1-1-76c27c8880df3dd4081d899c0f9d71d7-6529056295599562177-0
+        - globalObjectIdString: GlobalObjectId_V1-1-76c27c8880df3dd4081d899c0f9d71d7-5081762842130907685-0
+        - globalObjectIdString: GlobalObjectId_V1-1-76c27c8880df3dd4081d899c0f9d71d7-6376918571388565547-0
+        - globalObjectIdString: GlobalObjectId_V1-1-76c27c8880df3dd4081d899c0f9d71d7-4025079094120127621-0
+        - globalObjectIdString: GlobalObjectId_V1-1-76c27c8880df3dd4081d899c0f9d71d7-9092508546496178861-0
+        - globalObjectIdString: GlobalObjectId_V1-1-76c27c8880df3dd4081d899c0f9d71d7-473373204200772834-0
+        values:
+        - colorIndex: 2
+          iconNameOrGuid: AvatarMask On Icon
+        - colorIndex: 1
+          iconNameOrGuid: Settings Icon
+        - colorIndex: 6
+          iconNameOrGuid: PreMatCube
+        - colorIndex: 7
+          iconNameOrGuid: ScriptableObject Icon
+        - colorIndex: 8
+          iconNameOrGuid: ScriptableObject Icon
+        - colorIndex: 3
+          iconNameOrGuid: AudioClip Icon
