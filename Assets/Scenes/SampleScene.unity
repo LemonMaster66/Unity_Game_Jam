@@ -340,12 +340,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b54357c092778d4ca074f5262211851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ActiveWave: 0
   waves:
   - enemies:
-    - enemyPrefab: {fileID: 0}
-      spawnCount: 0
-    - enemyPrefab: {fileID: 0}
-      spawnCount: 0
+    - enemyPrefab: {fileID: 4286647982714725155, guid: e2fbc5211b919a84bad546e5351de92e,
+        type: 3}
+      spawnCount: 1
 --- !u!4 &648001853
 Transform:
   m_ObjectHideFlags: 0
@@ -966,7 +966,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 4aa377ba497206a46a049aba4a7260cf, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: ebf172643982ad54ab4acde9a8841863, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &1764062659
 Transform:
@@ -1183,22 +1183,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6954374001096263072}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!208 &224063544561727599
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5875704828607105741}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 0.00001, y: 0.175, z: 0.00001}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &284908768269919579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1477,11 +1461,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
-  Mana: 0
-  Collectables: 0
   Dead: 0
   playerMovement: {fileID: 0}
   playerSFX: {fileID: 0}
+  cameraFX: {fileID: 0}
   _damageScreen: {fileID: 0}
   _deathScreen: {fileID: 0}
   textPopup: {fileID: 6753892766376831701, guid: 0b54996f03f12e042982138c506d913c,
@@ -1729,8 +1712,9 @@ GameObject:
   - component: {fileID: 6993554329885206990}
   - component: {fileID: 8415538693048327001}
   - component: {fileID: 2480609865743395516}
-  - component: {fileID: 2413502633552869919}
   - component: {fileID: 5756282870506271662}
+  - component: {fileID: 2413502633552869919}
+  - component: {fileID: 8415538693048327002}
   m_Layer: 0
   m_Name: Cinemachine Camera
   m_TagString: Untagged
@@ -2166,6 +2150,8 @@ MonoBehaviour:
   Movement: {x: 0, y: 0, z: 0}
   MovementX: 0
   MovementY: 0
+  CoyoteTime: 0
+  JumpBuffer: 0
   _speed: 0
   _maxSpeed: 0
   _gravity: 0
@@ -2975,11 +2961,9 @@ GameObject:
   - component: {fileID: 835180029990069077}
   - component: {fileID: 4387229379986196665}
   - component: {fileID: 9197314996290568841}
-  - component: {fileID: 8828373021414520692}
   - component: {fileID: 3577198573706866992}
   - component: {fileID: 1222968317424817961}
   - component: {fileID: 4577651896536253109}
-  - component: {fileID: 224063544561727599}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -3506,7 +3490,7 @@ MonoBehaviour:
   CanParryBullet: 0
   IgniteEnemies: 0
   SelfDamage: 0
-  Damage: 1
+  Damage: 2
   MinDamage: 0
   DamageFalloff: 0
   Ammo: 0
@@ -3772,6 +3756,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HideOnStart: 1
+--- !u!114 &8415538693048327002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804238618689082614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 0
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 3
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 11400000, guid: e9ce97b7a206dc64d90931ea044e0c72, type: 2}
+    m_AmplitudeGain: -5
+    m_FrequencyGain: 0.6
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.3
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 34300
+  m_DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!1 &8441482890275837981
 GameObject:
   m_ObjectHideFlags: 0
@@ -3953,20 +3990,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000033831457, y: 0.0071184123, z: 0.00061853696}
     m_Extent: {x: 0.0025174438, y: 0.007966004, z: 0.0020448207}
   m_DirtyAABB: 0
---- !u!114 &8828373021414520692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5875704828607105741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c929558837722646aaba0390a286cb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CoyoteTime: 0
-  JumpBuffer: 0
 --- !u!4 &9071411295327895538
 Transform:
   m_ObjectHideFlags: 3
@@ -4034,6 +4057,6 @@ SceneRoots:
   - {fileID: 1764062659}
   - {fileID: 2341202747535877200}
   - {fileID: 1366908974}
-  - {fileID: 648001853}
   - {fileID: 894737240}
   - {fileID: 1776682640}
+  - {fileID: 648001853}

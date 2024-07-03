@@ -2,30 +2,33 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VInspector;
 
 [Serializable]
 public class Target : MonoBehaviour
 {
+    [Tab("Main")]
     [Header("Types")]
     public bool Invincible = false;
     public bool ShowDamageIndicator = false;
-    public GameObject damageIndicatorObj;
+    [ShowIf("ShowDamageIndicator")] public GameObject damageIndicatorObj;
+    [EndIf]
 
     [Header("Properties")]
-    public float  Health = 100;
-    public float  TotalDamage;
+    public float Health = 100;
 
     [Header("States")]
     public bool Dead = false;
 
     private GameObject dmgIndicator;
     private DamageIndicator dmgIndicatorValues;
+    [HideInInspector] public float TotalDamage;
     [HideInInspector] public float MaxHealth;
     [HideInInspector] public float DamageStorageTime;
 
 
 
-    void Awake()
+    public virtual void Awake()
     {
         MaxHealth = Health;
     }

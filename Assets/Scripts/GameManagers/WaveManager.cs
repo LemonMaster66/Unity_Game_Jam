@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using Grabbit;
 using UnityEngine;
+using VInspector;
 
 public class WaveManager : MonoBehaviour
 {
+    public int ActiveWave;
     public List<Wave> waves = new List<Wave>();
 
     void Awake()
@@ -12,15 +14,16 @@ public class WaveManager : MonoBehaviour
     }
 
     
-    public void SpawnWave(int waveIndex)
+    [Button]
+    public void SpawnWave()
     {
-        if (waveIndex < 0 || waveIndex >= waves.Count)
+        if (ActiveWave < 0 || ActiveWave >= waves.Count)
         {
             Debug.LogError("Invalid wave index");
             return;
         }
 
-        Wave wave = waves[waveIndex];
+        Wave wave = waves[ActiveWave];
         foreach (var enemyInfo in wave.enemies)
         {
             for (int i = 0; i < enemyInfo.spawnCount; i++)
@@ -28,5 +31,7 @@ public class WaveManager : MonoBehaviour
                 Instantiate(enemyInfo.enemyPrefab, transform.position, transform.rotation);
             }
         }
+
+        ActiveWave++;
     }
 }

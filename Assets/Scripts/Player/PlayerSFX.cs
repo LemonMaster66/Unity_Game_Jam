@@ -55,11 +55,7 @@ public class PlayerSFX : AudioManager
         if(stepTimer < 0)
         {
             if(!PM.Running) PlayRandomSound(WalkStep, PM.Crouching ? 0.3f:0.75f, 1, 0.2f);
-            else
-            {
-                PlayRandomSound(RunStep,  0.75f, 1, 0.2f);
-                if(enemy != null) enemy.HearSound(transform.position, 35, 5);
-            }
+            else            PlayRandomSound(RunStep,  0.75f, 1, 0.2f);
             stepTimer = TimeBetweenSteps;
         }
 

@@ -19,6 +19,7 @@ MonoBehaviour:
     - 3ac357a288f00ed49b862c342910879d
     - ab6cd124883ff5f4ab14e2a679af3974
     - 2c20e89d1f53ec242b14c0600592a61d
+    - e2fbc5211b919a84bad546e5351de92e
     values:
     - goDatas_byGlobalId:
         keys:
@@ -69,6 +70,7 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-2263813463622252347-0
         - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-6421926641459187400-0
         - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-3330917880676524469-0
+        - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-648001851-0
         values:
         - colorIndex: 1
           iconNameOrGuid: Favorite
@@ -164,6 +166,8 @@ MonoBehaviour:
           iconNameOrGuid: Favorite
         - colorIndex: 1
           iconNameOrGuid: Favorite
+        - colorIndex: 2
+          iconNameOrGuid: AudioReverbZone Icon
     - goDatas_byGlobalId:
         keys:
         - globalObjectIdString: GlobalObjectId_V1-2-0cc706faff3928947949a1da75b43f70-7096398928377216603-0
@@ -407,3 +411,24 @@ MonoBehaviour:
           iconNameOrGuid: Settings Icon
         - colorIndex: 9
           iconNameOrGuid: Camera Icon
+    - goDatas_byGlobalId:
+        keys:
+        - globalObjectIdString: GlobalObjectId_V1-1-e2fbc5211b919a84bad546e5351de92e-4286647982714725155-0
+        - globalObjectIdString: GlobalObjectId_V1-1-e2fbc5211b919a84bad546e5351de92e-658047307867234998-0
+        - globalObjectIdString: GlobalObjectId_V1-1-e2fbc5211b919a84bad546e5351de92e-5529560900620857407-0
+        - globalObjectIdString: GlobalObjectId_V1-1-e2fbc5211b919a84bad546e5351de92e-3547794779096905461-0
+        - globalObjectIdString: GlobalObjectId_V1-1-e2fbc5211b919a84bad546e5351de92e-3739516265197642204-0
+        - globalObjectIdString: GlobalObjectId_V1-1-e2fbc5211b919a84bad546e5351de92e-5278757889155422944-0
+        values:
+        - colorIndex: 2
+          iconNameOrGuid: AvatarMask On Icon
+        - colorIndex: 1
+          iconNameOrGuid: Settings Icon
+        - colorIndex: 6
+          iconNameOrGuid: PreMatCube
+        - colorIndex: 3
+          iconNameOrGuid: AudioClip Icon
+        - colorIndex: 7
+          iconNameOrGuid: ScriptableObject Icon
+        - colorIndex: 8
+          iconNameOrGuid: ScriptableObject Icon

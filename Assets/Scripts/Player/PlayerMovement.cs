@@ -49,7 +49,10 @@ public class PlayerMovement : MonoBehaviour
         public Vector3 Movement;
         public float   MovementX;
         public float   MovementY;
-        [Space(10)]
+        [Space(8)]
+        public float CoyoteTime;
+        public float JumpBuffer;
+        [Space(8)]
         public float   _speed;
         public float   _maxSpeed;
         public float   _gravity;
@@ -62,7 +65,6 @@ public class PlayerMovement : MonoBehaviour
 
         private PlayerStats  playerStats;
         private PlayerSFX    playerSFX;
-        private Timers       timers;
         private GroundCheck  groundCheck;
     #endregion
 
@@ -77,7 +79,6 @@ public class PlayerMovement : MonoBehaviour
         playerSFX    = FindAnyObjectByType<PlayerSFX>();
         playerStats  = GetComponent<PlayerStats>();
         groundCheck  = GetComponentInChildren<GroundCheck>();
-        timers       = GetComponent<Timers>();
 
         //Component Values
         rb.useGravity = false;
@@ -89,6 +90,12 @@ public class PlayerMovement : MonoBehaviour
         TargetScale.y = 1.5f;
     }
 
+
+    void Update()
+    {
+        if(CoyoteTime > 0) CoyoteTime = Math.Clamp(CoyoteTime - Time.deltaTime, 0, 100);
+        if(JumpBuffer > 0) JumpBuffer = Math.Clamp(JumpBuffer - Time.deltaTime, 0, 100);
+    }
 
     void FixedUpdate()
     {
@@ -161,8 +168,8 @@ public class PlayerMovement : MonoBehaviour
         if(Paused || !CanMove) return;
         if(context.started && !playerStats.Dead)
         {
-            if((Grounded || timers.CoyoteTime > 0) && !HasJumped) Jump();
-            else if(!Grounded || timers.CoyoteTime == 0) timers.JumpBuffer = 0.15f;
+            if((Grounded || CoyoteTime > 0) && !HasJumped) Jump();
+            else if(!Grounded || CoyoteTime == 0) JumpBuffer = 0.15f;
         }
     }
     public void Jump()

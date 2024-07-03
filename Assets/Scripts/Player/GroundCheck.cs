@@ -6,7 +6,6 @@ public class GroundCheck : MonoBehaviour
     private PlayerMovement playerMovement;
     private PlayerSFX      playerSFX;
     private CameraFX       cameraFX;
-    private Timers         timers;
 
     public GameObject GroundObject;
     public bool Grounded;
@@ -17,7 +16,6 @@ public class GroundCheck : MonoBehaviour
         playerMovement = GetComponentInParent<PlayerMovement>();
         playerSFX      = FindAnyObjectByType<PlayerSFX>();
         cameraFX       = FindAnyObjectByType<CameraFX>();
-        timers         = GetComponentInParent<Timers>();
     }
 
     public bool CheckGround()
@@ -34,14 +32,11 @@ public class GroundCheck : MonoBehaviour
 
         if(GroundObject == null)
         {
-            if(timers.JumpBuffer > 0) playerMovement.Jump();
+            if(playerMovement.JumpBuffer > 0) playerMovement.Jump();
             else playerMovement.HasJumped = false;
 
             cameraFX.ImpulseSource.GenerateImpulseWithForce(Math.Clamp(playerMovement.SmoothVelocity.y, -20, 0) * (cameraFX.ImpulseSource.enabled ? 1 : 0));
             playerSFX.PlayRandomSound(playerSFX.Land, playerMovement.SmoothVelocity.y*-1/50, 1f, 0.15f, false);
-
-            float HearRange = Math.Clamp(playerMovement.SmoothVelocity.y/15, -1, 0)*-60;
-            if(playerSFX.enemy != null) playerSFX.enemy.HearSound(transform.position, HearRange, 10);
         }
         
         GroundObject = other.gameObject;
@@ -54,7 +49,7 @@ public class GroundCheck : MonoBehaviour
         GroundObject = null;
         Grounded = false;
 
-        timers.CoyoteTime = 0.3f;
+        playerMovement.CoyoteTime = 0.3f;
     }
 
     private void OnTriggerStay(Collider other)

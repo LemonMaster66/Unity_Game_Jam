@@ -9,10 +9,7 @@ public class PlayerStats : MonoBehaviour
 {
     [Tab("Main")]
     [Header("Properties")]
-    public float Health        = 100;
-    public float Mana          = 100;
-    public int   Collectables  = 0;
-
+    public float Health = 100;
 
     [Header("States")]
     public bool Dead = false;
@@ -21,6 +18,7 @@ public class PlayerStats : MonoBehaviour
     [Tab("Settings")]
     public PlayerMovement playerMovement;
     public PlayerSFX      playerSFX;
+    public CameraFX       cameraFX;
     public Image _damageScreen;
     public Image _deathScreen;
     public GameObject textPopup;
@@ -30,8 +28,9 @@ public class PlayerStats : MonoBehaviour
     void Awake()
     {
         //Assign Scripts
-        playerSFX      = FindAnyObjectByType<PlayerSFX>();
         playerMovement = GetComponent<PlayerMovement>();
+        playerSFX      = FindAnyObjectByType<PlayerSFX>();
+        cameraFX       = FindAnyObjectByType<CameraFX>();
 
         GameObject canvas = GameObject.Find("Canvas");
         if(canvas != null) _damageScreen = canvas.transform.GetChild(0).GetComponent<Image>();
@@ -40,19 +39,14 @@ public class PlayerStats : MonoBehaviour
 
     void Update()
     {
-        if(!Dead) 
-        {
-            Health = Math.Clamp(Health + Time.deltaTime*2, 0, 100);
-            if(_damageScreen != null) _damageScreen.color = new Color(1,1,1, (Health / 80*-1)+1);
-        }
-        else if(_damageScreen != null) _damageScreen.color = new Color(1,1,1,0);
+        if(_damageScreen != null) _damageScreen.color = new Color(1,1,1, !Dead ? (Health / 80*-1)+1 : 0);
     }
 
 
     public void TakeDamage(float Damage = 100)
     {
         Health -= Damage;
-        playerSFX.enemy.GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce(-2);
+        cameraFX.GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce(Damage/10f);
         playerSFX.PlaySound(playerSFX.Damage);
         if(Health < 0) Die();
     }
@@ -60,16 +54,9 @@ public class PlayerStats : MonoBehaviour
     {
         Dead = true;
         _deathScreen.color = new Color(1,1,1,1);
-        playerSFX.enemy.GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce(-5);
+        cameraFX.GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce(-8);
         playerSFX.StopSound(playerSFX.Damage);
         playerSFX.PlaySound(playerSFX.Death);
-    }
-
-    
-    public void ObtainCollectable()
-    {
-        Collectables++;
-        playerSFX.PlayRandomSound(playerSFX.ObtainCollectableSFX, 1, 1, 0.1f);
     }
 
 

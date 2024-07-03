@@ -99,9 +99,6 @@ public class Pickup : Interactable
         }
 
         if(MoneyText != null) SpawnText(!overrideText ? Value + "" : text);
-        enemy.HearSound(transform.position,
-            overrideHearRange == false  ? Value*4 : hearRange,
-            overrideHearRange == false  ? Value   : hearPriority);
 
         Destroy(gameObject, 0.5f);
     }

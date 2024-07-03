@@ -102,23 +102,19 @@ public class Prop : MonoBehaviour
         {
             Shatter(relativeVelocity);
             audioManager.PlayRandomSound(ShatterLargeSfx, Force, 1, 0.2f);
-            if(enemy != null) enemy.HearSound(transform.position, 100, 50);
         }
         else if(Force > SmallShatterThreshold && ShatterSmallSfx.Length > 0 && Destructable)
         {
             Shatter(relativeVelocity);
             audioManager.PlayRandomSound(ShatterSmallSfx, Force, 1, 0.2f);
-            if(enemy != null) enemy.HearSound(transform.position, 75, 35);
         }
         else if(Force > LargeThreshold && CollideLargeSfx.Length > 0)
         {
             audioManager.PlayRandomSound(CollideLargeSfx, Force, 1, 0.2f);
-            if(enemy != null) enemy.HearSound(transform.position, 50, 20);
         }
         else if(Force > MediumThreshold && CollideMediumSfx.Length > 0)
         {
             audioManager.PlayRandomSound(CollideMediumSfx, Force, 1, 0.2f);
-            if(enemy != null) enemy.HearSound(transform.position, 35, 10);
         }
         else if(CollideSmallSfx.Length > 0)
         {
