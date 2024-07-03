@@ -59,7 +59,6 @@ public class Piercer : Gun
         CameraShake(0.75f);
 
         base.ShootStart();
-
     }
 
     public override void AltShootStart()
