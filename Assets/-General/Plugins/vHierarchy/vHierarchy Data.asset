@@ -59,6 +59,16 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-7971556639955101077-0
         - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-355406215-0
         - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-1356371729-0
+        - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-284908768082560412-1022091463
+        - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-4826441563474165228-1022091463
+        - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-2263813463809234940-1022091463
+        - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-6421926640978308623-1022091463
+        - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-3330917880736989554-1022091463
+        - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-284908768269919579-0
+        - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-4826441564226395435-0
+        - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-2263813463622252347-0
+        - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-6421926641459187400-0
+        - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-3330917880676524469-0
         values:
         - colorIndex: 1
           iconNameOrGuid: Favorite
@@ -132,6 +142,26 @@ MonoBehaviour:
           iconNameOrGuid: 
         - colorIndex: 1
           iconNameOrGuid: ScriptableObject Icon
+        - colorIndex: 1
+          iconNameOrGuid: Favorite
+        - colorIndex: 1
+          iconNameOrGuid: ScriptableObject Icon
+        - colorIndex: 1
+          iconNameOrGuid: Favorite
+        - colorIndex: 1
+          iconNameOrGuid: Favorite
+        - colorIndex: 1
+          iconNameOrGuid: Favorite
+        - colorIndex: 0
+          iconNameOrGuid: Favorite
+        - colorIndex: 1
+          iconNameOrGuid: ScriptableObject Icon
+        - colorIndex: 1
+          iconNameOrGuid: Favorite
+        - colorIndex: 1
+          iconNameOrGuid: Favorite
+        - colorIndex: 1
+          iconNameOrGuid: Favorite
         - colorIndex: 1
           iconNameOrGuid: Favorite
     - goDatas_byGlobalId:

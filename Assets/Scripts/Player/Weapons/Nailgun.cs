@@ -40,8 +40,8 @@ public class Nailgun : Gun
     {
         if(HoldingAltShoot && AltCharge > 0.1f)
         {
-            //audioManager.PlayRandomSound(playerSFX.Nailgun_Shoot, 1, 0.75f, 0.1f, false);
-            //cameraFX.CameraShake(3f+AltCharge/2, 0.45f, 0.35f);
+            audioManager.PlayRandomSound(gunManager.Nailgun_Shoot, 1, 0.75f, 0.1f, false);
+            CameraShake(0.5f);
             animator.SetBool("Charge", true);
             Damage = 2.5f;
             MultiShot = 5;
@@ -50,8 +50,8 @@ public class Nailgun : Gun
         }
         else
         {
-            //audioManager.PlayRandomSound(playerSFX.Nailgun_Shoot, 1, 2f, 0.25f, false);
-            //cameraFX.CameraShake(1.5f, 0.45f, 0.35f);
+            audioManager.PlayRandomSound(gunManager.Nailgun_Shoot, 1, 2f, 0.25f, false);
+            CameraShake(0.3f);
             animator.SetBool("Charge", false);
             Damage = 1f;
             MultiShot = 0;

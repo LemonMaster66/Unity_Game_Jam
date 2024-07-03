@@ -31,8 +31,8 @@ public class Shotgun : Gun
         if (!CanShoot || AttackCooldown || MultiShotCooldown) return;
 
         animator.Play("Shotgun_Shoot", 0, 0.1f);
-        //playerSFX.PlaySound(playerSFX.Shotgun_Shoot, 1, 0.6f, 0.1f, false);
-        //cameraFX.CameraShake(4.5f+AltCharge*7, 0.45f, 0.35f);
+        audioManager.PlaySound(gunManager.Shotgun_Shoot, 0.6f, 1, 0.1f, false);
+        CameraShake(2f+AltCharge);
 
         Charge(AltCharge);
         AltCharge = 0;
@@ -54,8 +54,8 @@ public class Shotgun : Gun
         }
 
         animator.Play("Shotgun_Rack", 0, 0.1f);
-        //playerSFX.PlaySound(playerSFX.Shotgun_Rack, 1, 0.9f, 0, false);
-        //playerSFX.PlaySound(playerSFX.Shotgun_Charge, 1+(AltCharge/5), 0.5f, 0, false);
+        audioManager.PlaySound(gunManager.Shotgun_Rack, 0.9f, 1, 0, false);
+        audioManager.PlaySound(gunManager.Shotgun_Charge, 0.5f, 1+(AltCharge/5), 0, false);
     }
 
     void Charge(float ChargeCount)

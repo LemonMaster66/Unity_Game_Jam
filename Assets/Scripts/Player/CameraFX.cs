@@ -29,11 +29,12 @@ public class CameraFX : MonoBehaviour
 
     [Foldout("Cinemachine stuff")]
     public Camera cam;
-    public CinemachineVirtualCamera CMvc;
-    public CinemachineInputProvider CMip;
-    public CinemachineBasicMultiChannelPerlin CMbmcp;
-    public CinemachineImpulseSource CMis;
-    public CinemachinePOV CMpov;
+    public CinemachineVirtualCamera VirtualCamera;
+    public CinemachineInputProvider InputProvider;
+    public CinemachineBasicMultiChannelPerlin PerlinShake;
+    public CinemachineImpulseSource ImpulseSource;
+    public CinemachineImpulseListener ImpulseListener;
+    public CinemachinePOV POV;
     public PlayerMovement playerMovement;
     public PlayerStats playerStats;
 
@@ -41,10 +42,11 @@ public class CameraFX : MonoBehaviour
     {
         //Assign Components
         cam = Camera.main;
-        CMvc = FindAnyObjectByType<CinemachineVirtualCamera>();
-        CMbmcp = CMvc.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-        CMpov = CMvc.GetCinemachineComponent<CinemachinePOV>();
-        CMip = GetComponent<CinemachineInputProvider>();
+        VirtualCamera = FindAnyObjectByType<CinemachineVirtualCamera>();
+        PerlinShake = VirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        POV = VirtualCamera.GetCinemachineComponent<CinemachinePOV>();
+        InputProvider = GetComponent<CinemachineInputProvider>();
+        ImpulseListener = GetComponent<CinemachineImpulseListener>();
 
         playerMovement = FindAnyObjectByType<PlayerMovement>();
         playerStats = FindAnyObjectByType<PlayerStats>();
@@ -52,32 +54,32 @@ public class CameraFX : MonoBehaviour
 
     void Update()
     {
-        CMip.enabled = true;
+        InputProvider.enabled = true;
         
         if(playerStats.Dead || playerMovement.Paused)
         {
-            CMvc.m_Lens.Dutch = 0;
-            CMvc.m_Lens.FieldOfView = 60;
-            CMbmcp.m_AmplitudeGain = 0;
-            CMbmcp.m_FrequencyGain = 0;
+            VirtualCamera.m_Lens.Dutch = 0;
+            VirtualCamera.m_Lens.FieldOfView = 60;
+            PerlinShake.m_AmplitudeGain = 0;
+            PerlinShake.m_FrequencyGain = 0;
             return;
         }
 
 
         //Dutch Tilt + Field Of View
-        CMvc.m_Lens.Dutch = Mathf.SmoothDamp(CMvc.m_Lens.Dutch, TargetDutch, ref BlendDutch, 0.1f);
-        CMvc.m_Lens.FieldOfView = Mathf.SmoothDamp(CMvc.m_Lens.FieldOfView, TargetFOV, ref BlendFOV, 0.2f);
+        VirtualCamera.m_Lens.Dutch = Mathf.SmoothDamp(VirtualCamera.m_Lens.Dutch, TargetDutch, ref BlendDutch, 0.1f);
+        VirtualCamera.m_Lens.FieldOfView = Mathf.SmoothDamp(VirtualCamera.m_Lens.FieldOfView, TargetFOV, ref BlendFOV, 0.2f);
         TargetDutch = playerMovement.MovementX * -2f;
 
 
         //Footstep
-        CMbmcp.m_AmplitudeGain = Mathf.SmoothDamp(CMbmcp.m_AmplitudeGain, TargetShakeAmplitude, ref BlendShakeAmplitude, 0.1f);
-        CMbmcp.m_FrequencyGain = Mathf.SmoothDamp(CMbmcp.m_FrequencyGain, TargetShakeFrequency, ref BlendShakeFrequency, 0.1f);
+        PerlinShake.m_AmplitudeGain = Mathf.SmoothDamp(PerlinShake.m_AmplitudeGain, TargetShakeAmplitude, ref BlendShakeAmplitude, 0.1f);
+        PerlinShake.m_FrequencyGain = Mathf.SmoothDamp(PerlinShake.m_FrequencyGain, TargetShakeFrequency, ref BlendShakeFrequency, 0.1f);
 
         
         //Land Force
-        if(!playerMovement.Crouching) CMis.m_DefaultVelocity.y = 0.25f;
-        else CMis.m_DefaultVelocity.y = 0.15f;
+        if(!playerMovement.Crouching) ImpulseSource.m_DefaultVelocity.y = 0.25f;
+        else ImpulseSource.m_DefaultVelocity.y = 0.15f;
 
 
         //Footstep Shake Conditions
@@ -144,7 +146,7 @@ public class CameraFX : MonoBehaviour
 
     public void Die()
     {
-        CMvc.enabled = false;
+        VirtualCamera.enabled = false;
         TargetShakeAmplitude = 0f;
         TargetShakeFrequency = 0f;
     }

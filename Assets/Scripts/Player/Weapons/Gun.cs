@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System;
 using Unity.Mathematics;
+using Cinemachine;
 
 public class Gun : MonoBehaviour
 {
@@ -74,6 +75,7 @@ public class Gun : MonoBehaviour
         [HideInInspector] public PlayerMovement  playerMovement;
         [HideInInspector] public AudioManager    audioManager;
         [HideInInspector] public CameraFX        cameraFX;
+        [HideInInspector] public GunManager      gunManager;
 
         [HideInInspector] public float TargetAnimatorBlendTree;
         [HideInInspector] public float BlendAnimatorBlendTree;
@@ -91,6 +93,7 @@ public class Gun : MonoBehaviour
         audioManager    = GetComponentInParent<AudioManager>();
         animator        = GetComponent<Animator>();
         cameraFX        = FindAnyObjectByType<CameraFX>();
+        gunManager      = GetComponentInParent<GunManager>();
         
         currentAmmo = Ammo;
         _damage = Damage;
@@ -153,7 +156,7 @@ public class Gun : MonoBehaviour
         ExtraShootFunctions();
 
         Vector3 shootVector = CalculateShootVector();
-
+        
         //****************************************************************
         //Hitscan
         if (!Projectile)
@@ -199,7 +202,10 @@ public class Gun : MonoBehaviour
 
     public virtual Vector3 CalculateShootVector()
     {
+        cameraFX.ImpulseListener.m_Gain = 0;
         Vector3 shootVector = cam.transform.forward;
+        cameraFX.ImpulseListener.m_Gain = 1;
+
         if (Spread != 0)
         {
             shootVector.x += UnityEngine.Random.Range(-Spread / 200, Spread / 200);
@@ -235,5 +241,11 @@ public class Gun : MonoBehaviour
     public virtual void ExtraShootFunctions()
     {
 
+    }
+
+    public virtual void CameraShake(float Force)
+    {
+        gunManager.Impulse.GenerateImpulse(Force);
+        cameraFX.ImpulseListener.m_Gain = 0;
     }
 }

@@ -23,7 +23,7 @@ public class Piercer : Gun
         if(AltCoolDown < 0 && AltCoolDown != 0)
         {
             AltCoolDown = 0;
-            //audioManager.PlaySound(playerSFX.Piercer_Recharge, 1, 0.3f, 0, false);
+            audioManager.PlaySound(gunManager.Piercer_Recharge, 0.3f, 1, 0, false);
         }
 
         if(HoldingAltShoot && AltCoolDown == 0) AltCharge += Time.deltaTime;
@@ -36,8 +36,10 @@ public class Piercer : Gun
         else
         {
             animator.SetFloat("Charge", 0);
-            //playerSFX.StopSound(playerSFX.Piercer_Charge);
+            audioManager.StopSound(gunManager.Piercer_Charge);
         }
+
+        audioManager.SetValues(gunManager.Piercer_Charge, AltCharge*2, AltCharge*2, 0, true);
     }
 
     public override void ShootStart()
@@ -51,11 +53,13 @@ public class Piercer : Gun
         Knockback = 18;
 
         animator.Play("Piercer_Shoot", 0, 0.1f);
-        //playerSFX.PlayRandomSound(playerSFX.Piercer_Shoot, 1, 0.6f, 0.1f, false);
-        //playerSFX.StopSound(playerSFX.Piercer_Charge);
-        //cameraFX.CameraShake(3.5f, 0.45f, 0.2f);
+        audioManager.PlayRandomSound(gunManager.Piercer_Shoot, 0.6f, 1f, 0.1f, false);
+        audioManager.StopSound(gunManager.Piercer_Charge);
+
+        CameraShake(0.75f);
 
         base.ShootStart();
+
     }
 
     public override void AltShootStart()
@@ -64,7 +68,7 @@ public class Piercer : Gun
         base.AltShootStart();
 
         animator.SetFloat("Charge", 1, 0.2f, Time.deltaTime);
-        //playerSFX.PlaySound(playerSFX.Piercer_Charge, 1, 0.9f, 0, true);
+        audioManager.PlaySound(gunManager.Piercer_Charge, 0f, 0f, 0, true);
     }
 
     public override void AltShootEnd()
@@ -80,10 +84,12 @@ public class Piercer : Gun
         Knockback = 50;
 
         animator.Play("Piercer_Shoot", 0, 0.1f);
-        //playerSFX.PlayRandomSound(playerSFX.Piercer_PierceShoot, 1, 0.9f, 0.1f, false);
-        //cameraFX.CameraShake(8f, 0.45f, 0.4f);
+        audioManager.PlayRandomSound(gunManager.Piercer_PierceShoot, 0.9f, 1f, 0.1f, false);
+        
+        CameraShake(5);
         
         base.ShootStart();
+
 
         HoldingShoot = false;
         HoldingAltShoot = false;
