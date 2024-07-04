@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using PalexUtilities;
 using UnityEngine;
@@ -26,7 +27,7 @@ public class AbilityManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.F4))
         {
             Tools.ClearLogConsole();
-            StartCoroutine(DisplayRandomAbilities());
+            StartCoroutine(DisplayRandomAbilities(3));
         }
     }
 
@@ -59,30 +60,38 @@ public class AbilityManager : MonoBehaviour
     }
 
 
-    public IEnumerator DisplayRandomAbilities()
+    public IEnumerator DisplayRandomAbilities(int Count)
     {
-        Transform CardDomain = GameObject.Find("Cards").transform;
-        foreach(Card card in cards) Destroy(card.gameObject);
-
+        foreach(Card card in cards)
+        {
+            Destroy(card.cardVisual.gameObject);
+            Destroy(card.gameObject);
+        }
         cards.Clear();
 
-        List<Ability> randomAbilities = GetRandomAbilities(3);
+        List<Ability> randomAbilities = GetRandomAbilities(Count);
         foreach (var ability in randomAbilities)
         {
-            yield return new WaitForSeconds(0.12f);
+            yield return new WaitForSeconds(0.05f);
 
-            Debug.Log(ability.Name + ":  " + ability.Description + "  -  Costs: " + ability.Cost + "hp");
-
-            GameObject cardObj = Instantiate(CardPrefab, Vector3.zero, Quaternion.identity, CardDomain);
-            Card newCard = cardObj.GetComponent<Card>();
-
-            newCard.UpdateCard(null, ability.Name, ability.Description, ability.Cost, ability);
-            cards.Add(newCard);
+            SpawnCard(ability);
         }
     }
 
     List<Ability> GetRandomAbilities(int count)
     {
         return abilities.OrderBy(x => Guid.NewGuid()).Take(count).ToList();
+    }
+
+    public void SpawnCard(Ability ability)
+    {
+        Transform CardDomain = GameObject.Find("Cards").transform;
+        GameObject cardObj = Instantiate(CardPrefab, Vector3.zero, Quaternion.identity, CardDomain);
+        Card newCard = cardObj.GetComponent<Card>();
+        newCard.ability = ability;
+
+        newCard.Initiate();
+
+        cards.Add(newCard);
     }
 }

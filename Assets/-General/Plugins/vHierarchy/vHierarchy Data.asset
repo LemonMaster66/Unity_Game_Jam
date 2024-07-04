@@ -22,6 +22,7 @@ MonoBehaviour:
     - e2fbc5211b919a84bad546e5351de92e
     - 76c27c8880df3dd4081d899c0f9d71d7
     - fbdc6b5a00da2a34a8659fce2ba38c38
+    - 251a12620f0bf3f499b6b9021ce6db76
     values:
     - goDatas_byGlobalId:
         keys:
@@ -75,6 +76,10 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-648001851-0
         - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-1522917503-0
         - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-1858020994-0
+        - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-6930371997877287910-56422106
+        - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-6123430939981022172-0
+        - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-1179247153-0
+        - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-6930371997857142076-0
         values:
         - colorIndex: 1
           iconNameOrGuid: Favorite
@@ -176,6 +181,14 @@ MonoBehaviour:
           iconNameOrGuid: Folder Icon
         - colorIndex: 0
           iconNameOrGuid: Material Icon
+        - colorIndex: 1
+          iconNameOrGuid: Canvas Icon
+        - colorIndex: 2
+          iconNameOrGuid: 
+        - colorIndex: 7
+          iconNameOrGuid: 
+        - colorIndex: 1
+          iconNameOrGuid: Settings Icon
     - goDatas_byGlobalId:
         keys:
         - globalObjectIdString: GlobalObjectId_V1-2-0cc706faff3928947949a1da75b43f70-7096398928377216603-0
@@ -465,8 +478,35 @@ MonoBehaviour:
         keys:
         - globalObjectIdString: GlobalObjectId_V1-1-fbdc6b5a00da2a34a8659fce2ba38c38-6930371997877287910-0
         - globalObjectIdString: GlobalObjectId_V1-1-fbdc6b5a00da2a34a8659fce2ba38c38-6123430940034755846-0
+        - globalObjectIdString: GlobalObjectId_V1-1-fbdc6b5a00da2a34a8659fce2ba38c38-1068558525565343291-0
         values:
         - colorIndex: 1
           iconNameOrGuid: Folder Icon
         - colorIndex: 6
           iconNameOrGuid: Material Icon
+        - colorIndex: 1
+          iconNameOrGuid: Folder Icon
+    - goDatas_byGlobalId:
+        keys:
+        - globalObjectIdString: GlobalObjectId_V1-1-251a12620f0bf3f499b6b9021ce6db76-8447278305117774722-0
+        - globalObjectIdString: GlobalObjectId_V1-1-251a12620f0bf3f499b6b9021ce6db76-6369666457603103931-0
+        - globalObjectIdString: GlobalObjectId_V1-1-251a12620f0bf3f499b6b9021ce6db76-5510944177994448982-0
+        - globalObjectIdString: GlobalObjectId_V1-1-251a12620f0bf3f499b6b9021ce6db76-3251281597168555065-0
+        - globalObjectIdString: GlobalObjectId_V1-1-251a12620f0bf3f499b6b9021ce6db76-4722447844754249794-0
+        - globalObjectIdString: GlobalObjectId_V1-1-251a12620f0bf3f499b6b9021ce6db76-9029515742605964219-0
+        - globalObjectIdString: GlobalObjectId_V1-1-251a12620f0bf3f499b6b9021ce6db76-1205486336602827110-0
+        values:
+        - colorIndex: 1
+          iconNameOrGuid: Settings Icon
+        - colorIndex: 2
+          iconNameOrGuid: Canvas Icon
+        - colorIndex: 7
+          iconNameOrGuid: Canvas Icon
+        - colorIndex: 0
+          iconNameOrGuid: ScriptableObject Icon
+        - colorIndex: 0
+          iconNameOrGuid: ScriptableObject Icon
+        - colorIndex: 0
+          iconNameOrGuid: ScriptableObject Icon
+        - colorIndex: 0
+          iconNameOrGuid: PreMatQuad
