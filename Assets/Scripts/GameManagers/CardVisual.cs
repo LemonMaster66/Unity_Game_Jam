@@ -8,7 +8,10 @@ public class CardVisual : MonoBehaviour
 {
     [Header("Origin Card")]
     public Card parentCard;
-    public Transform cardTransform;
+    public Transform parentCardTransform;
+
+    public Transform ShakeTransform;
+    public Transform TiltTransform;
 
     [Header("Properties")]
     public float positionSpeed = 30;
@@ -26,9 +29,9 @@ public class CardVisual : MonoBehaviour
 
     void Update()
     {
-        transform.position = Vector3.Slerp(transform.position, cardTransform.position, positionSpeed * Time.deltaTime);
+        transform.position = Vector3.Slerp(transform.position, parentCardTransform.position, positionSpeed * Time.deltaTime);
 
-        Vector3 movement = transform.position - cardTransform.position;
+        Vector3 movement = transform.position - parentCardTransform.position;
         movementDelta = Vector3.Slerp(movementDelta, movement, 25 * Time.deltaTime);
         Vector3 movementRotation = movement * 0.5f;
         rotationDelta = Vector3.Slerp(rotationDelta, movementRotation, rotationSpeed * Time.deltaTime);

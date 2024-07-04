@@ -28,7 +28,8 @@ public class WaveManager : MonoBehaviour
         {
             for (int i = 0; i < enemyInfo.spawnCount; i++)
             {
-                Instantiate(enemyInfo.enemyPrefab, transform.position, transform.rotation);
+                Vector2 SpawnPos = Random.insideUnitCircle * 60;
+                Instantiate(enemyInfo.enemyPrefab, SpawnPos, transform.rotation);
             }
         }
 

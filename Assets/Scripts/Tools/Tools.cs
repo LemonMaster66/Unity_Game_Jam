@@ -203,6 +203,14 @@ namespace PalexUtilities
             }
 
 
+            public static Vector3 RandomVector3(float Offset)
+            {
+                return new Vector3(Random.Range(-Offset, Offset),
+                                   Random.Range(-Offset, Offset),
+                                   Random.Range(-Offset, Offset));
+            }
+
+
         #endregion
 
 

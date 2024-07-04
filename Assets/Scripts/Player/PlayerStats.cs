@@ -48,7 +48,13 @@ public class PlayerStats : MonoBehaviour
         Health -= Damage;
         cameraFX.GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce(Damage/10f);
         playerSFX.PlaySound(playerSFX.Damage, 1, 1, 0.1f);
-        if(Health < 0) Die();
+        if(Health <= 0) Die();
+    }
+    public void LoseHealth(float Amount = 100)
+    {
+        Health -= Amount;
+        cameraFX.GetComponent<CinemachineImpulseSource>().GenerateImpulseWithForce(Amount/10f);
+        if(Health <= 0) Die();
     }
     public void Die()
     {

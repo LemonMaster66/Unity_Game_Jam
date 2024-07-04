@@ -13,21 +13,26 @@ public class AbilityManager : MonoBehaviour
 
     public GameObject CardPrefab;
 
+    private PlayerStats playerStats;
     private GunManager gunManager;
     private Gun ActiveGun;
 
     void Awake()
     {
+        playerStats = FindAnyObjectByType<PlayerStats>();
         AddAbilites();
     }
 
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Tab)) ApplyAbility(abilities[1]);
-        if(Input.GetKeyDown(KeyCode.F4))
+        if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Tools.ClearLogConsole();
-            StartCoroutine(DisplayRandomAbilities(3));
+            FindAnyObjectByType<ShopManager>().StartShop();
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            FindAnyObjectByType<ShopManager>().EndShop();
         }
     }
 
@@ -56,7 +61,10 @@ public class AbilityManager : MonoBehaviour
     }
     public void ApplyAbility(Ability ability)
     {
+        ActiveGun = gunManager.GetGun(gunManager.ActiveGun);
         ability.Effect(ActiveGun);
+
+        playerStats.LoseHealth(ability.Cost);
     }
 
 
@@ -77,10 +85,20 @@ public class AbilityManager : MonoBehaviour
             SpawnCard(ability);
         }
     }
-
     List<Ability> GetRandomAbilities(int count)
     {
         return abilities.OrderBy(x => Guid.NewGuid()).Take(count).ToList();
+    }
+
+    public IEnumerator DestroyAllCards()
+    {
+        foreach (Card card in cards)
+        {
+            yield return new WaitForSeconds(0.05f);
+
+            DespawnCard(card);
+        }
+        cards.Clear();
     }
 
     public void SpawnCard(Ability ability)
@@ -93,5 +111,12 @@ public class AbilityManager : MonoBehaviour
         newCard.Initiate();
 
         cards.Add(newCard);
+    }
+
+    public void DespawnCard(Card card)
+    {
+        card.cardVisual.GetComponent<Animator>().Play("Despawn", 0, 0);
+        Destroy(card.cardVisual.gameObject, 0.5f);
+        Destroy(card.gameObject, 0.5f);
     }
 }

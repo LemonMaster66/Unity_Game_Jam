@@ -78,5 +78,10 @@ public class Target : MonoBehaviour
         Dead = true;
         
         Destroy(transform.parent.gameObject);
+
+        if(FindObjectsByType<Enemy>(FindObjectsSortMode.None).Length == 1)
+        {
+            FindAnyObjectByType<ShopManager>().StartShop();
+        }
     }
 }

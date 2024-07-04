@@ -29,13 +29,15 @@ public class GunManager : MonoBehaviour
     [Header("Nailgun")]
     public AudioClip[] Nailgun_Shoot;
 
+    private PlayerMovement playerMovement;
     [HideInInspector] public CinemachineImpulseSource Impulse;
 
 
     void Awake()
     {
-        audioManager = GetComponent<AudioManager>();
-        Impulse      = GetComponent<CinemachineImpulseSource>();
+        audioManager   = GetComponent<AudioManager>();
+        Impulse        = GetComponent<CinemachineImpulseSource>();
+        playerMovement = FindAnyObjectByType<PlayerMovement>();
 
         foreach(Transform transform in Tools.GetChildren(transform))
         {
@@ -53,37 +55,37 @@ public class GunManager : MonoBehaviour
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        if(CountGuns() < 1) return;
+        if(CountGuns() < 1 || playerMovement.Paused) return;
         if(context.started)       GetGun(ActiveGun).ShootStart();
         else if(context.canceled) GetGun(ActiveGun).ShootEnd();
     }
 
     public void OnAltFire(InputAction.CallbackContext context)
     {
-        if(CountGuns() < 1) return;
+        if(CountGuns() < 1 || playerMovement.Paused) return;
         if(context.started)       GetGun(ActiveGun).AltShootStart();
         else if(context.canceled) GetGun(ActiveGun).AltShootEnd();
     }
 
-    public void OnScroll(InputAction.CallbackContext context)
-    {
-        if(CountGuns() < 1) return;
-        float inputScroll = context.ReadValue<float>();
-        if(inputScroll != 0)
-        {
-            while(true)
-            {
-                ActiveGun -= (int)inputScroll;
+    // public void OnScroll(InputAction.CallbackContext context)
+    // {
+    //     if(CountGuns() < 1) return;
+    //     float inputScroll = context.ReadValue<float>();
+    //     if(inputScroll != 0)
+    //     {
+    //         while(true)
+    //         {
+    //             ActiveGun -= (int)inputScroll;
 
-                if(ActiveGun < 0)             ActiveGun = Guns.Count-1;
-                if(ActiveGun > Guns.Count-1)  ActiveGun = 0;
+    //             if(ActiveGun < 0)             ActiveGun = Guns.Count-1;
+    //             if(ActiveGun > Guns.Count-1)  ActiveGun = 0;
 
-                if(HasGun(ActiveGun)) break;
-            }
+    //             if(HasGun(ActiveGun)) break;
+    //         }
 
-            SwapGun(ActiveGun);
-        }
-    }
+    //         SwapGun(ActiveGun);
+    //     }
+    // }
 
     public void SwapGun(int GunChoice)
     {

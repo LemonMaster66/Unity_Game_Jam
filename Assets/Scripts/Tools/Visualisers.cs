@@ -6,21 +6,21 @@ using VInspector;
 
 public class Visualisers : MonoBehaviour
 {
-    [Variants("null")]
+    [Variants("Health")]
     public string Type;
+    public TextMeshProUGUI textMeshPro;
 
-    // Update is called once per frame
-    void Awake()
+    private PlayerStats playerStats;
+
+
+    void Update()
     {
+        playerStats = FindAnyObjectByType<PlayerStats>();
         UpdateText();
     }
 
     public void UpdateText()
     {
-        // if(Type == "Money")            textMeshPro.text = Type + ": " + playerStats.Money + "";
-        // if(Type == "Camera Film")      textMeshPro.text = Type + ": " + (cameraManager.FilmLength + (10 * playerStats.extraFilm)) + "";
-        // if(Type == "Render Speed")     textMeshPro.text = Type + ": " + cameraManager.CaptureCooldown + "";
-        // if(Type == "Speed")            textMeshPro.text = Type + ": " + playerMovement.Speed + "";
-        // if(Type == "Smoke Bombs")      textMeshPro.text = Type + ": " + playerStats.SmokeBomb + "";
+        if(Type == "Health") textMeshPro.text = Type + ": " + playerStats.Health + "";
     }
 }

@@ -495,6 +495,7 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-1-251a12620f0bf3f499b6b9021ce6db76-4722447844754249794-0
         - globalObjectIdString: GlobalObjectId_V1-1-251a12620f0bf3f499b6b9021ce6db76-9029515742605964219-0
         - globalObjectIdString: GlobalObjectId_V1-1-251a12620f0bf3f499b6b9021ce6db76-1205486336602827110-0
+        - globalObjectIdString: GlobalObjectId_V1-1-251a12620f0bf3f499b6b9021ce6db76-3414103707528596829-0
         values:
         - colorIndex: 1
           iconNameOrGuid: Settings Icon
@@ -509,4 +510,6 @@ MonoBehaviour:
         - colorIndex: 0
           iconNameOrGuid: ScriptableObject Icon
         - colorIndex: 0
+          iconNameOrGuid: PreMatQuad
+        - colorIndex: 9
           iconNameOrGuid: PreMatQuad
