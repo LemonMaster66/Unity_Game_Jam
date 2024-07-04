@@ -8,6 +8,9 @@ using UnityEngine;
 public class AbilityManager : MonoBehaviour
 {
     public List<Ability> abilities = new List<Ability>();
+    public List<Card> cards = new List<Card>();
+
+    public GameObject CardPrefab;
 
     private GunManager gunManager;
     private Gun ActiveGun;
@@ -23,7 +26,7 @@ public class AbilityManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.F4))
         {
             Tools.ClearLogConsole();
-            DisplayRandomAbilities();
+            StartCoroutine(DisplayRandomAbilities());
         }
     }
 
@@ -42,20 +45,39 @@ public class AbilityManager : MonoBehaviour
                                   10));
         abilities.Add(new Ability("Multishot", "Increases Multishot by 1",
                                   gun => ActiveGun.MultiShot += 1,
-                                  10));
+                                  15));
+        abilities.Add(new Ability("Ricochet", "Increases Ricochet Bounces by 1",
+                                  gun => ActiveGun.RicochetCount += 1,
+                                  5));
+        abilities.Add(new Ability("Piercing", "Increases Percing by 1",
+                                  gun => ActiveGun.PierceCount += 1,
+                                  8));
     }
-    void ApplyAbility(Ability ability)
+    public void ApplyAbility(Ability ability)
     {
         ability.Effect(ActiveGun);
     }
 
 
-    void DisplayRandomAbilities()
+    public IEnumerator DisplayRandomAbilities()
     {
+        Transform CardDomain = GameObject.Find("Cards").transform;
+        foreach(Card card in cards) Destroy(card.gameObject);
+
+        cards.Clear();
+
         List<Ability> randomAbilities = GetRandomAbilities(3);
         foreach (var ability in randomAbilities)
         {
-            Debug.Log(ability.Name + ": " + ability.Description + "  -  Costs: " + ability.Cost + "hp");
+            yield return new WaitForSeconds(0.12f);
+
+            Debug.Log(ability.Name + ":  " + ability.Description + "  -  Costs: " + ability.Cost + "hp");
+
+            GameObject cardObj = Instantiate(CardPrefab, Vector3.zero, Quaternion.identity, CardDomain);
+            Card newCard = cardObj.GetComponent<Card>();
+
+            newCard.UpdateCard(null, ability.Name, ability.Description, ability.Cost, ability);
+            cards.Add(newCard);
         }
     }
 

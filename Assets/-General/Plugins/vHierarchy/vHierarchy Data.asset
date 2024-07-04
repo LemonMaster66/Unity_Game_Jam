@@ -21,6 +21,7 @@ MonoBehaviour:
     - 2c20e89d1f53ec242b14c0600592a61d
     - e2fbc5211b919a84bad546e5351de92e
     - 76c27c8880df3dd4081d899c0f9d71d7
+    - fbdc6b5a00da2a34a8659fce2ba38c38
     values:
     - goDatas_byGlobalId:
         keys:
@@ -72,6 +73,8 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-6421926641459187400-0
         - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-3330917880676524469-0
         - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-648001851-0
+        - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-1522917503-0
+        - globalObjectIdString: GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-1858020994-0
         values:
         - colorIndex: 1
           iconNameOrGuid: Favorite
@@ -169,6 +172,10 @@ MonoBehaviour:
           iconNameOrGuid: Favorite
         - colorIndex: 2
           iconNameOrGuid: AudioReverbZone Icon
+        - colorIndex: 1
+          iconNameOrGuid: Folder Icon
+        - colorIndex: 0
+          iconNameOrGuid: Material Icon
     - goDatas_byGlobalId:
         keys:
         - globalObjectIdString: GlobalObjectId_V1-2-0cc706faff3928947949a1da75b43f70-7096398928377216603-0
@@ -454,3 +461,12 @@ MonoBehaviour:
           iconNameOrGuid: ScriptableObject Icon
         - colorIndex: 3
           iconNameOrGuid: AudioClip Icon
+    - goDatas_byGlobalId:
+        keys:
+        - globalObjectIdString: GlobalObjectId_V1-1-fbdc6b5a00da2a34a8659fce2ba38c38-6930371997877287910-0
+        - globalObjectIdString: GlobalObjectId_V1-1-fbdc6b5a00da2a34a8659fce2ba38c38-6123430940034755846-0
+        values:
+        - colorIndex: 1
+          iconNameOrGuid: Folder Icon
+        - colorIndex: 6
+          iconNameOrGuid: Material Icon
