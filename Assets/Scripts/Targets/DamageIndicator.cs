@@ -49,7 +49,7 @@ public class DamageIndicator : MonoBehaviour
         _TMPro.text = Damage + "";
         Recolour();
 
-        if(Age != 0 && Decay == true) animator.Play("Tick");
+        if(Age != 0 && Decay == true && animator != null) animator.Play("Tick");
         gameObject.name = Damage + "";
     }
 

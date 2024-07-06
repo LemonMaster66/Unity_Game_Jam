@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using PalexUtilities;
 using UnityEngine;
 
 public class HitScan : MonoBehaviour
@@ -43,6 +44,12 @@ public class HitScan : MonoBehaviour
     public int   pierceRemaining;
 
 
+    public void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
+
+
     public IEnumerator SpawnHitscanBullet(Vector3 HitPoint, Vector3 shootVector, RaycastHit hit, bool RayHit, float finalDistance)
     {
         Vector3 startPosition = transform.position;
@@ -75,45 +82,49 @@ public class HitScan : MonoBehaviour
             // Knockback
             if (hit.rigidbody != null) hit.rigidbody.AddForce(-hit.normal * Knockback * 10);
 
-            // Hit Enemy
-            TargetPoint targetPoint = hit.transform.GetComponent<TargetPoint>();
-            if(targetPoint != null)
+            // Hit Enemy;
+            if(hit.transform != null)
             {
-                //Unique
-                if (!targetsHit.Contains(targetPoint.target))
+                TargetPoint targetPoint = hit.transform.GetComponent<TargetPoint>();
+                if(targetPoint != null)
                 {
-                    pierceRemaining--;
-                    targetsHit.Add(targetPoint.target);
-                    targetPoint.OnHit(finalDamage, HitPoint);
+                    //Unique
+                    if (!targetsHit.Contains(targetPoint.target))
+                    {
+                        pierceRemaining--;
+                        targetsHit.Add(targetPoint.target);
+                        targetPoint.OnHit(finalDamage, HitPoint);
+                    }
+                    if(pierceRemaining > 0) Pierce(HitPoint, shootVector, finalDistance);
+                    else
+                    {
+                        if(ricoRemaining > 0 && RicoOnHit)
+                        {
+                            yield return new WaitForSeconds(0.05f);
+                            finalDamage *= RicochetMultiplier;
+                            Ricochet(HitPoint, shootVector, hit, finalDistance);
+                        }
+                        else transform.parent = hit.transform;
+                    }
                 }
-                if(pierceRemaining > 0) Pierce(HitPoint, shootVector, finalDistance);
                 else
                 {
-                    if(ricoRemaining > 0 && RicoOnHit)
+                    // Ricochet
+                    if(ricoRemaining > 0)
                     {
                         yield return new WaitForSeconds(0.05f);
+
                         finalDamage *= RicochetMultiplier;
                         Ricochet(HitPoint, shootVector, hit, finalDistance);
                     }
                     else transform.parent = hit.transform;
                 }
-            }
-            else
-            {
-                // Ricochet
-                if(ricoRemaining > 0)
-                {
-                    yield return new WaitForSeconds(0.05f);
 
-                    finalDamage *= RicochetMultiplier;
-                    Ricochet(HitPoint, shootVector, hit, finalDistance);
-                }
-                else transform.parent = hit.transform;
+                
+                if(DestroyOnImpact) DestroyBullet(0.1f);
+                if(hit.collider.gameObject.layer == 3) Destroy(gameObject);
             }
-
             
-            if(DestroyOnImpact) DestroyBullet(0.1f);
-            if(hit.collider.gameObject.layer == 3) Destroy(gameObject);
         }
         else Destroy(gameObject);
     }
@@ -142,8 +153,9 @@ public class HitScan : MonoBehaviour
     }
 
 
-    public void DestroyBullet(float Delay)
+    public void DestroyBullet(float Delay = 0)
     {
+        
         if(!ExploadOnDestroy) Destroy(gameObject, Delay);
         else Explode();
     }
@@ -153,8 +165,6 @@ public class HitScan : MonoBehaviour
         Debug.Log("Boom");
         Destroy(gameObject);
     }
-
-
 
 
     public void AssignOrigin(Gun gun)
@@ -196,11 +206,4 @@ public class HitScan : MonoBehaviour
         ricoRemaining = RicochetCount;
         pierceRemaining = PierceCount+1;
     }
-
-
-
-
-
-
-
 }
