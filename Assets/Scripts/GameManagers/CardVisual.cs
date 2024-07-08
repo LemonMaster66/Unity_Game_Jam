@@ -16,6 +16,7 @@ public class CardVisual : MonoBehaviour
     [Header("Properties")]
     public float positionSpeed = 30;
     public float rotationSpeed = 20;
+    public float rotationMagnitude = 50;
 
     [Header("Details")]
     public Image CardImage;
@@ -32,8 +33,11 @@ public class CardVisual : MonoBehaviour
         transform.position = Vector3.Slerp(transform.position, parentCardTransform.position, positionSpeed * Time.deltaTime);
 
         Vector3 movement = transform.position - parentCardTransform.position;
-        movementDelta = Vector3.Slerp(movementDelta, movement, 25 * Time.deltaTime);
-        Vector3 movementRotation = movement * 0.5f;
+        movement.x /= Screen.width;
+        movement.y /= Screen.height;
+        movement.z /= Screen.height;
+        Vector3 movementRotation = movement * (rotationMagnitude * 10);
+
         rotationDelta = Vector3.Slerp(rotationDelta, movementRotation, rotationSpeed * Time.deltaTime);
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, rotationDelta.x);
     }
